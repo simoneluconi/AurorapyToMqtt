@@ -94,6 +94,7 @@ while True:
 
     except Exception as e:
         if str(e) == 'Unknown transmission state':
+            print(e)
             time.sleep(60)
         else:
             print(e)
