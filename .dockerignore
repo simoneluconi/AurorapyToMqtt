@@ -1,0 +1,3 @@
+.git
+app/.env*
+app/__pycache__
