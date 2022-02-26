@@ -5,14 +5,14 @@ services:
     image: 
     environment:
       - TZ=<Continent>/<Town>
-      - MQTT_USERNAME = "<username>"
-      - MQTT_PASSWORD = "<password>"
-      - MQTT_BROKER_HOST = "<hostname>"
-      - MQTT_BROKER_PORT = "<port>"
-      - MQTT_TOPIC = "solar/1"
-      - AURORA_POWERONE_HOST = "<hostname>"
-      - AURORA_POWERONE_PORT = "<port>"
-      - AURORA_POWERONE_ADRESSE = "2"
-      - LONGITUDE = "0.000000000000000"
-      - LATITUDE = "0.000000000000000"
+      - MQTT_USERNAME = <username>
+      - MQTT_PASSWORD = <password>
+      - MQTT_BROKER_HOST = <hostname>
+      - MQTT_BROKER_PORT = <port>
+      - MQTT_TOPIC = solar/1
+      - AURORA_POWERONE_HOST = <hostname>
+      - AURORA_POWERONE_PORT = <port>
+      - AURORA_POWERONE_ADRESSE = 2
+      - LONGITUDE = 0.000000000000000
+      - LATITUDE = 0.000000000000000
     restart: always
