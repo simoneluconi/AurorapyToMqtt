@@ -5,6 +5,7 @@ import time
 import paho.mqtt.client as mqtt
 import json
 from sun import IsSunUp
+from waiting import wait, TimeoutExpired
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -90,7 +91,7 @@ while True:
         
         else:
             print('Sun is down')
-            time.sleep(300)
+            wait(lambda: IsSunUp(), sleep_seconds=300)
 
     except Exception as e:
         if str(e) == 'Unknown transmission state':
