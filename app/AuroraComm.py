@@ -44,6 +44,20 @@ while True:
             output_power = c.measure(3)
             result["output_power"] = output_power
 
+            #INPUT 1 VOLTAGE
+            input_voltage = c.measure(23)
+            result["input_voltage"] = input_voltage
+
+            ampsTot = 0
+            #INPUT 1 CURRENT
+            input1_current = c.measure(25)
+            ampsTot += input1_current
+
+            #INPUT 2 CURRENT
+            input2_current = c.measure(27)
+            ampsTot += input2_current
+            result["input2_current"] = input2_current  
+
             #ENERGY DAILY
             daily_energy = c.cumulated_energy(period=0) / 1000
             result["daily_energy"] = daily_energy
@@ -63,6 +77,9 @@ while True:
             #ENERGY TOTAL
             energy_total = c.cumulated_energy(period=5) / 1000
             result["energy_total"] = energy_total
+
+            inverter_temperature = c.measure(21)
+            result["inverter_temperature"] = inverter_temperature            
 
             jsonRes = json.dumps(result)
             client.publish(os.getenv('MQTT_TOPIC'), jsonRes)
