@@ -34,9 +34,9 @@ while True:
     try:
         if IsSunUp():
             if sunup < 1:
-                print('Sun is up, starting polling every two seonds')
+                print('Sun is up, starting polling every two seconds\n')
                 sunup = sunup + 1
-                
+
             c.connect()
             result = dict()
 
@@ -95,7 +95,7 @@ while True:
             time.sleep(2)
         
         else:
-            print('Sun is down, stopping polling until tomorrow')
+            print('Sun is down, stopping polling until tomorrow\n')
             wait(lambda: IsSunUp(), sleep_seconds=300)
             sunup = 0
 
