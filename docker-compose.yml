@@ -2,7 +2,7 @@
 version: '3.7'
 services:
   aurorapy2mqtt:
-    image: 
+    image: serotonie/aurorapy2mqtt
     environment:
       - TZ=<Continent>/<Town>
       - MQTT_USERNAME=<username>
