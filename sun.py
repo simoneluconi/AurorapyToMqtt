@@ -1,5 +1,5 @@
-import ephem
 from datetime import datetime
+from suntime import Sun, SunTimeException
 
 def IsSunUp():
     sun = ephem.Sun()
