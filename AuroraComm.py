@@ -1,8 +1,11 @@
+from dotenv import load_dotenv
+import os
 from aurorapy.client import AuroraError, AuroraTCPClient
 import time
 import paho.mqtt.client as mqtt
 import json
 from sun import IsSunUp
+
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -12,15 +15,17 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
 
+load_dotenv()
+
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.username_pw_set("ABBPowerOne", "7yPxtqtzHk8JP9ZDqJJNXgWa")
-client.connect("192.168.1.10", 1883, 60)
+client.username_pw_set(os.getenv('MQTT_USERNAME'), os.getenv('MQTT_PASSWORD'))
+client.connect(os.getenv('MQTT_BROKER_HOST'), int(os.getenv('MQTT_BROKER_PORT')), 60)
 client.loop_start()
 
-c = AuroraTCPClient(ip='192.168.1.10', port=20108, address=2)
+c = AuroraTCPClient(ip=os.getenv('AURORA_POWERONE_HOST'), port=int(os.getenv('AURORA_POWERONE_PORT')), address=int(os.getenv('AURORA_POWERONE_ADRESSE')))
 
 while True:
 
@@ -60,7 +65,7 @@ while True:
             result["energy_total"] = energy_total
 
             jsonRes = json.dumps(result)
-            client.publish("/solar/1", jsonRes)
+            client.publish(os.getenv('MQTT_TOPIC'), jsonRes)
 
             c.close()
 
@@ -71,7 +76,10 @@ while True:
             time.sleep(300)
 
     except Exception as e:
-        print(e)
+        if str(e) == 'Unknown transmission state':
+            time.sleep(60)
+        else:
+            print(e)
 
     
 

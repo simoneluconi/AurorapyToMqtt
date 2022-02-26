@@ -1,10 +1,14 @@
+from dotenv import load_dotenv
+import os
 from datetime import datetime, timedelta
 from suntime import Sun, SunTimeException
 import pytz
 
+load_dotenv()
+
 def IsSunUp():
-    longitude = 6.404010057449341
-    latitude = 46.644479344712764
+    longitude = float(os.getenv('LONGITUDE'))
+    latitude = float(os.getenv('LATITUDE'))
 
     sun = Sun(latitude, longitude)
     today_sunrise = sun.get_sunrise_time()
