@@ -27,11 +27,16 @@ client.connect(os.getenv('MQTT_BROKER_HOST'), int(os.getenv('MQTT_BROKER_PORT'))
 client.loop_start()
 
 c = AuroraTCPClient(ip=os.getenv('AURORA_POWERONE_HOST'), port=int(os.getenv('AURORA_POWERONE_PORT')), address=int(os.getenv('AURORA_POWERONE_ADRESSE')))
+sunup = 0
 
 while True:
 
     try:
         if IsSunUp():
+            if sunup < 1:
+                print('Sun is up, starting polling every two seonds')
+                sunup = sunup + 1
+                
             c.connect()
             result = dict()
 
@@ -90,8 +95,9 @@ while True:
             time.sleep(2)
         
         else:
-            print('Sun is down')
+            print('Sun is down, stopping polling until tomorrow')
             wait(lambda: IsSunUp(), sleep_seconds=300)
+            sunup = 0
 
     except Exception as e:
         if str(e) == 'Unknown transmission state':
