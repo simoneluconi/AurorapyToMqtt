@@ -28,4 +28,4 @@ Don't forget to adapt it to your needs :smile:
 
 # Future developpement
 - [ ] Auto discovery by Home-Assistant
-- [ ] Improve python coding style as I'm only a (very) part time developper :laugh:
+- [ ] Improve python coding style as I'm only a (very) part time developper :joy:
