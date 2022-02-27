@@ -14,8 +14,8 @@ def IsSunUp():
     today_sunrise = sun.get_sunrise_time()
     today_sunset = sun.get_sunset_time()
 
-    today_dawn = today_sunrise + timedelta(minutes=-30)
-    today_twilight = today_sunset + timedelta (minutes = 30)
+    today_dawn = today_sunrise + timedelta(minutes=-15)
+    today_twilight = today_sunset + timedelta (minutes = 15)
 
     time = datetime.utcnow().replace(tzinfo=pytz.timezone('UTC'))
 
