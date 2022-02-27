@@ -5,7 +5,7 @@ import time
 
 load_dotenv()
 
-def PowerOne():
+def PowerOne(SunUp):
 
     c = AuroraTCPClient(ip=os.getenv('AURORA_POWERONE_HOST'), port=int(os.getenv('AURORA_POWERONE_PORT')), address=int(os.getenv('AURORA_POWERONE_ADRESSE')))
 
@@ -20,23 +20,25 @@ def PowerOne():
         serial_number=c.serial_number()
         result["serial_number"] = serial_number
 
-        #OUTPUT POWER
-        output_power = c.measure(3)
-        result["output_power"] = output_power
+        if SunUp:
+            output_power = c.measure(3)
+            input_voltage = c.measure(23)
+            input1_current = c.measure(25)
+            input2_current = c.measure(27)
+            inverter_temperature = c.measure(21)
+        else:
+            output_power = 0.0
+            input_voltage = 0.0
+            input1_current = 0.0
+            input2_current = 0.0
+            inverter_temperature = 0.0
 
-        #INPUT 1 VOLTAGE
-        input_voltage = c.measure(23)
+        result["output_power"] = output_power 
         result["input_voltage"] = input_voltage
-
-        ampsTot = 0
-        #INPUT 1 CURRENT
-        input1_current = c.measure(25)
-        ampsTot += input1_current
-
-        #INPUT 2 CURRENT
-        input2_current = c.measure(27)
-        ampsTot += input2_current
-        result["input2_current"] = input2_current  
+        result["input1_current"] = input1_current 
+        result["input2_current"] = input2_current
+        result["ampsTot"] = input1_current + input2_current
+        result["inverter_temperature"] = inverter_temperature
 
         #ENERGY DAILY
         daily_energy = c.cumulated_energy(period=0) / 1000
@@ -58,17 +60,13 @@ def PowerOne():
         energy_total = c.cumulated_energy(period=5) / 1000
         result["energy_total"] = energy_total
 
-        inverter_temperature = c.measure(21)
-        result["inverter_temperature"] = inverter_temperature
-
         return result
 
         c.close()
 
     except Exception as e:
         if str(e) == 'Unknown transmission state':
-            print(e)
-            result["output_power"] = 0.0
+            print(str(e) + ' - the light is probably to low')
             time.sleep(60)
         else:
             print(e)
