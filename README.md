@@ -5,7 +5,7 @@ Docker container to send data from serial or TCP communication from Aurora Inver
 
 # How to use
 Run the docker container with the provided docker-compose.yml
-Don't forget to adapt it to your needs :smile:
+- !Don't forget to adapt it to your needs :smile:!
 
 # Example of the json payload
 ```
