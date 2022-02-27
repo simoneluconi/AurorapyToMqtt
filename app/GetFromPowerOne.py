@@ -6,6 +6,8 @@ load_dotenv()
 
 def PowerOne():
 
+    c = AuroraTCPClient(ip=os.getenv('AURORA_POWERONE_HOST'), port=int(os.getenv('AURORA_POWERONE_PORT')), address=int(os.getenv('AURORA_POWERONE_ADRESSE')))
+
     try:
 
         c.connect()
