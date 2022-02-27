@@ -26,5 +26,5 @@ Run the docker container with the provided docker-compose.yml
 ```
 
 # Future developpement
-: Auto discovery by Home-Assistant
-: ameliore python coding style as I'm only a (very) part time developper :)
+- [] Auto discovery by Home-Assistant
+- [] Improve python coding style as I'm only a (very) part time developper :smile:
