@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 from aurorapy.client import AuroraError, AuroraTCPClient
+import time
 
 load_dotenv()
 
