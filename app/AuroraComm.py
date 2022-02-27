@@ -6,6 +6,7 @@ import json
 from sun import IsSunUp
 from waiting import wait, TimeoutExpired
 from GetFromPowerOne import PowerOne
+from aurorapy.client import AuroraError, AuroraTCPClient
 
 
 # The callback for when the client receives a CONNACK response from the server.
@@ -26,7 +27,6 @@ client.username_pw_set(os.getenv('MQTT_USERNAME'), os.getenv('MQTT_PASSWORD'))
 client.connect(os.getenv('MQTT_BROKER_HOST'), int(os.getenv('MQTT_BROKER_PORT')), 60)
 client.loop_start()
 
-c = AuroraTCPClient(ip=os.getenv('AURORA_POWERONE_HOST'), port=int(os.getenv('AURORA_POWERONE_PORT')), address=int(os.getenv('AURORA_POWERONE_ADRESSE')))
 sunup = 0
 
 while True:
