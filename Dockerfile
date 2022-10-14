@@ -1,4 +1,4 @@
-FROM python:3-alpin
+FROM python:3-alpine
 
 RUN pip install --upgrade pip
 
