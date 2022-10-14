@@ -1,8 +1,6 @@
-FROM python:3-alpine
+FROM python:3-debian-slim
 
 RUN pip install --upgrade pip
-
-RUN apk add build-base
 
 RUN adduser -D worker
 USER worker
