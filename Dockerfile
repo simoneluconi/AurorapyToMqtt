@@ -1,6 +1,8 @@
-FROM python:3.9-alpine
+FROM python:3-alpine
 
 RUN pip install --upgrade pip
+
+RUN apk add build-base
 
 RUN adduser -D worker
 USER worker
