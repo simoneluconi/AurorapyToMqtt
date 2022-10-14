@@ -2,8 +2,7 @@ FROM python:3-slim-bullseye
 
 RUN pip install --upgrade pip
 
-RUN groupadd --gid 1000 worker \
-    && useradd --uid 1000 --gid 1000 -m worker \
+RUN useradd worker
     
 USER worker
 WORKDIR /home/worker
