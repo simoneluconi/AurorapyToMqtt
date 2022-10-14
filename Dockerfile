@@ -1,4 +1,4 @@
-FROM python:3-debian-slim
+FROM python:3-slim-bullseye
 
 RUN pip install --upgrade pip
 
