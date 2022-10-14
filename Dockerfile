@@ -14,4 +14,4 @@ ENV PATH="/home/worker/.local/bin:${PATH}"
 
 COPY --chown=worker:worker ./app ./app
 
-CMD [ "python", "-u", "./AuroraComm.py" ]
+CMD [ "python", "-u", "./app/AuroraComm.py" ]
