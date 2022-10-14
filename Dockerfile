@@ -2,7 +2,8 @@ FROM python:3-slim-bullseye
 
 RUN pip install --upgrade pip
 
-RUN adduser -D worker
+RUN groupadd worker \
+    && useradd -m woker
 USER worker
 WORKDIR /home/worker
 
