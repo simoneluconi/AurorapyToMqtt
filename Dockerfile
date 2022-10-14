@@ -2,8 +2,13 @@ FROM python:3-slim-bullseye
 
 RUN pip install --upgrade pip
 
-RUN groupadd worker \
-    && useradd -m woker
+ARG USERNAME=worker
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+
+RUN groupadd --gid $USER_GID $USERNAME \
+    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+    
 USER worker
 WORKDIR /home/worker
 
