@@ -1,4 +1,4 @@
-FROM python:3-slim-stable
+FROM python:3-slim
 
 ARG USERNAME=worker
 ARG USER_UID=1000
