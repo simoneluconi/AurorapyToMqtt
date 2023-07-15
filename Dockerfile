@@ -9,15 +9,15 @@ RUN groupadd --gid $USER_GID $USERNAME \
 
 RUN pip install --upgrade pip
     
-USER worker
-WORKDIR /home/worker
+USER $USERNAME
+WORKDIR /home/$USERNAME
 
-COPY --chown=worker:worker requirements.txt ./
+COPY --chown=$USERNAME:$USERNAME requirements.txt ./
 RUN pip install --user --no-cache-dir -r requirements.txt
 RUN rm requirements.txt
 
-ENV PATH="/home/worker/.local/bin:${PATH}"
+ENV PATH="/home/${USERNAME}/.local/bin:${PATH}"
 
-COPY --chown=worker:worker ./app ./app
+COPY --chown=$USERNAME:$USERNAME ./app ./app
 
 CMD [ "python", "-u", "./app/AuroraComm.py" ]
