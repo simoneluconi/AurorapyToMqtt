@@ -29,4 +29,4 @@ Run the docker container with the provided docker-compose.yml
 # Future developpement
 - [ ] Auto discovery by Home-Assistant
 - [ ] Improve python coding style as I'm only a (very) part time developper :joy:
-- [ ] Multi Arch build
+- [x] Multi Arch build DONE :)
