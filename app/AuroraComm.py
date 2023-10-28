@@ -10,8 +10,9 @@ from aurorapy.client import AuroraError, AuroraTCPClient
 
 
 # The callback for when the client receives a CONNACK response from the server.
-def on_connect(client, userdata, flags, rc):
+def on_connect(client, userdata, flags, rc):    
     print("AuroraMQTT Connected with result code "+str(rc))
+    client.publish(os.getenv('MQTT_TOPIC')+"/status",payload="Online", qos=0, retain=True)
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
@@ -24,6 +25,7 @@ client.on_connect = on_connect
 client.on_message = on_message
 
 client.username_pw_set(os.getenv('MQTT_USERNAME'), os.getenv('MQTT_PASSWORD'))
+client.will_set(os.getenv('MQTT_TOPIC')+"/status", payload="Offline", qos=0, retain=True)
 client.connect(os.getenv('MQTT_BROKER_HOST'), int(os.getenv('MQTT_BROKER_PORT')), 60)
 client.loop_start()
 
