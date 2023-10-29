@@ -9,13 +9,14 @@ def Advertise (client, PowerOne, topic):
         "device": {
             "name": "Solaire PowerOne",
             "identifiers": PowerOne["serial_number"],
-            "model": PowerOne["serial_number"]
+            "model": PowerOne["product_number"],
+            "manufacturer": "ABB PowerOne"
         }
     }
 
     Payload = {
-        "name": "Puissance instantannée solaire",
-        "unique_id": "puissance_instantannee_solaire",
+        "name": "Puissance instantannée",
+        "unique_id": "puissance_instantannee",
         "state_topic": topic,
         "unit_of_measurement": "W",
         "value_template": "{{ value_json.output_power | round(1)}}",
@@ -29,8 +30,8 @@ def Advertise (client, PowerOne, topic):
     client.publish("homeassistant/sensor/"+PowerOne["serial_number"]+"/"+Payload["unique_id"]+"/config",payload=json.dumps(Payload), qos=0, retain=True)
 
     Payload = {
-        "name": "Solar Panel Total Production",
-        "unique_id": "solar_panel_total_production",
+        "name": "Total Production",
+        "unique_id": "total_production",
         "state_topic": "solar/1",
         "unit_of_measurement": "kWh",
         "value_template": "{{ value_json.energy_total | round(1)}}",
