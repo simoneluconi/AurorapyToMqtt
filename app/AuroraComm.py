@@ -13,7 +13,7 @@ from HassAutodiscovery import Advertise
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):    
     print("AuroraMQTT Connected with result code "+str(rc))
-    Adverstise(client, PowerOne(0), os.getenv('MQTT_TOPIC'))
+    Advertise(client, PowerOne(0), os.getenv('MQTT_TOPIC'))
     client.publish(os.getenv('MQTT_TOPIC')+"/status",payload="online", qos=0, retain=True)
 
 # The callback for when a PUBLISH message is received from the server.
