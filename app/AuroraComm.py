@@ -37,7 +37,7 @@ while True:
     if IsSunUp():
         if sunup < 1:
             print('Sun is up, starting polling every two seconds\n')
-            client.loop_start()
+            #client.loop_start()
             sunup = sunup + 1           
         
         PowerOne = PowerOne(1)
@@ -59,7 +59,7 @@ while True:
         jsonRes = json.dumps(PowerOne)
         client.publish(os.getenv('MQTT_TOPIC'), jsonRes, retain=True)
 
-        client.loop_stop()
+        #client.loop_stop()
 
         wait(lambda: IsSunUp(), sleep_seconds=300)
         
