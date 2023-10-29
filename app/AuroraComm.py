@@ -29,6 +29,7 @@ client.on_message = on_message
 client.username_pw_set(os.getenv('MQTT_USERNAME'), os.getenv('MQTT_PASSWORD'))
 client.will_set(os.getenv('MQTT_TOPIC')+"/status", payload="offline", qos=0, retain=True)
 client.connect(os.getenv('MQTT_BROKER_HOST'), int(os.getenv('MQTT_BROKER_PORT')), 60)
+time.sleep(5)
 client.loop_start()
 
 sunup = 0
