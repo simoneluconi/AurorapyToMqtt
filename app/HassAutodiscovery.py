@@ -9,8 +9,8 @@ def Advertise (client, PowerOne, topic):
         },
         "device": {
             "name": "Solaire PowerOne",
-            "identifiers": PowerOne[serial_number],
-            "model": PowerOne[product_number]
+            "identifiers": PowerOne["serial_number"],
+            "model": PowerOne["serial_number"]
         }
     }
 
@@ -27,7 +27,7 @@ def Advertise (client, PowerOne, topic):
 
     Payload = Payload | DeviceBase
 
-    client.publish("homeassistantTest/sensor/"+PowerOne[serial_number]+"/"+Payload[unique_id]+"/config",payload=json.dumps(Payload), qos=0, retain=True)
+    client.publish("homeassistantTest/sensor/"+PowerOne["serial_number"]+"/"+Payload["unique_id"]+"/config",payload=json.dumps(Payload), qos=0, retain=True)
 
     Payload = {
         "name": "Solar Panel Total Production",
@@ -42,4 +42,4 @@ def Advertise (client, PowerOne, topic):
 
     Payload = Payload | DeviceBase
 
-    client.publish("homeassistantTest/sensor/"+PowerOne[serial_number]+"/"+Payload[unique_id]+"/config",payload=json.dumps(Payload), qos=0, retain=True)
+    client.publish("homeassistantTest/sensor/"+PowerOne["serial_number"]+"/"+Payload["unique_id"]+"/config",payload=json.dumps(Payload), qos=0, retain=True)
