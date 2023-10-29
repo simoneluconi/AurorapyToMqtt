@@ -28,5 +28,6 @@ Run the docker container with the provided docker-compose.yml
 
 # Future developpement
 - [ ] Auto discovery by Home-Assistant
+    Implemented, has to be completed though
 - [ ] Improve python coding style as I'm only a (very) part time developper :joy:
 - [x] Multi Arch build DONE :)
