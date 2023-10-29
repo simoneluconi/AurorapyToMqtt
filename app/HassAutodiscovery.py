@@ -1,4 +1,4 @@
-def Advertise (client, PowerOne, topic)
+def Advertise (client, PowerOne, topic):
     print(PowerOne)
 
     DeviceBase = {
