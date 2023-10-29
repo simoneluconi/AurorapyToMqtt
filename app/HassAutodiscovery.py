@@ -43,3 +43,6 @@ def Advertise (client, PowerOne, topic):
     Payload = Payload | DeviceBase
 
     client.publish("homeassistantTest/sensor/"+PowerOne["serial_number"]+"/"+Payload["unique_id"]+"/config",payload=json.dumps(Payload), qos=0, retain=True)
+
+
+    return
