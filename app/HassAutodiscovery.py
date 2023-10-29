@@ -15,7 +15,7 @@ def Advertise (client, PowerOne, topic):
 
     Payload = {
         "name": "Puissance instantannée solaire",
-        "unique_id": "sensor.puissance_instantannee_solaire",
+        "unique_id": "puissance_instantannee_solaire",
         "state_topic": topic,
         "unit_of_measurement": "W",
         "value_template": "{{ value_json.output_power | round(1)}}",
@@ -30,7 +30,7 @@ def Advertise (client, PowerOne, topic):
 
     Payload = {
         "name": "Solar Panel Total Production",
-        "unique_id": "sensor.solar_panel_total_production",
+        "unique_id": "solar_panel_total_production",
         "state_topic": "solar/1",
         "unit_of_measurement": "kWh",
         "value_template": "{{ value_json.energy_total | round(1)}}",
