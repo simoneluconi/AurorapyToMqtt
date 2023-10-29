@@ -1,3 +1,5 @@
+import json
+
 def Advertise (client, PowerOne, topic):
     print(PowerOne)
 
@@ -13,7 +15,6 @@ def Advertise (client, PowerOne, topic):
     }
 
     Payload = {
-        DeviceBase,
         "name": "Puissance instantannée solaire",
         "unique_id": "sensor.puissance_instantannee_solaire",
         "state_topic": topic,
@@ -24,10 +25,11 @@ def Advertise (client, PowerOne, topic):
         "icon": "mdi:solar-power"
     }
 
-    client.publish("homeassistantTest/sensor/"+PowerOne.serial_number+"/"+Payload.unique_id+"/config",payload=Payload, qos=0, retain=True)
+    Payload = Payload | DeviceBase
+
+    client.publish("homeassistantTest/sensor/"+PowerOne.serial_number+"/"+Payload.unique_id+"/config",payload=json.dumps(Payload), qos=0, retain=True)
 
     Payload = {
-        DeviceBase,
         "name": "Solar Panel Total Production",
         "unique_id": "sensor.solar_panel_total_production",
         "state_topic": "solar/1",
@@ -38,4 +40,6 @@ def Advertise (client, PowerOne, topic):
         "icon": "mdi:solar-power-variant"
     }
 
-    client.publish("homeassistantTest/sensor/"+PowerOne.serial_number+"/"+Payload.unique_id+"/config",payload=Payload, qos=0, retain=True)
+    Payload = Payload | DeviceBase
+
+    client.publish("homeassistantTest/sensor/"+PowerOne.serial_number+"/"+Payload.unique_id+"/config",payload=json.dumps(Payload), qos=0, retain=True)
