@@ -40,11 +40,11 @@ while True:
             #client.loop_start()
             sunup = sunup + 1           
         
-        PowerOne = PowerOne(1)
+        resPowerOne = PowerOne(1)
 
-        Advertise(client, PowerOne, os.getenv('MQTT_TOPIC'))
+        Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
 
-        jsonRes = json.dumps(PowerOne)
+        jsonRes = json.dumps(resPowerOne)
         client.publish(os.getenv('MQTT_TOPIC'), jsonRes)
 
         time.sleep(2)
@@ -52,11 +52,11 @@ while True:
     else:
         print('Sun is down, stopping polling until tomorrow\n')
 
-        PowerOne = PowerOne(0)
+        resPowerOne = PowerOne(0)
 
-        Advertise(client, PowerOne, os.getenv('MQTT_TOPIC'))
+        Advertise(client, resPowerOne, os.getenv('MQTT_TOPIC'))
 
-        jsonRes = json.dumps(PowerOne)
+        jsonRes = json.dumps(resPowerOne)
         client.publish(os.getenv('MQTT_TOPIC'), jsonRes, retain=True)
 
         #client.loop_stop()
