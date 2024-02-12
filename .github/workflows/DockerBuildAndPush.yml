@@ -27,9 +27,3 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: serotonie/aurorapy2mqtt:latest
-      - name: Update repo description
-        uses: peter-evans/dockerhub-description@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: serotonie/aurorapy2mqtt
