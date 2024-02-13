@@ -5,8 +5,7 @@ on:
     branches:
       - "main"
   schedule:
-    - cron: "23 13 3 * *"
-  workflow_dispatch:
+    - cron: "23 13 * * *"
 
 jobs:  
   docker:
