@@ -18,7 +18,7 @@ jobs:
         uses: lucacome/docker-image-update-checker@v1.1.0
         with:
           base-image: python:3-slim
-          image: serotonie/aurorapy2mqtt # update for your image
+          image: serotonie/aurorapy2mqtt:latest # update for your image
     
       - name: Checkout
         uses: actions/checkout@v4
